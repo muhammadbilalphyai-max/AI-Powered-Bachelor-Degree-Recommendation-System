@@ -1,3 +1,14 @@
+import psutil
+import os
+
+def log_memory():
+    mem_mb = psutil.Process(os.getpid()).memory_info().rss / 1024 / 1024
+    print(f"[MEMORY CHECK] Current usage: {mem_mb:.1f} MB")
+
+log_memory()
+
+
+
 import os
 import streamlit as st
 import pandas as pd
