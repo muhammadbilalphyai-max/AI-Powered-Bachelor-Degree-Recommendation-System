@@ -42,9 +42,14 @@ if "final_intermediate_group" not in st.session_state:
 #  Model & Data
 # ==================================================================
 
-model = joblib.load("bachelor_degree_recommendation_model_compressed.joblib")
-label_encoder = joblib.load("label_encoder.joblib")
-model_columns = joblib.load("model_columns.joblib")
+@st.cache_resource
+def load_model_files():
+    model = joblib.load("bachelor_degree_recommendation_model_compressed.joblib")
+    label_encoder = joblib.load("label_encoder.joblib")
+    model_columns = joblib.load("model_columns.joblib")
+    return model, label_encoder, model_columns
+
+model, label_encoder, model_columns = load_model_files()
 
 SUBJECTS = {
     "Pre-Medical": ["English", "Physics", "Chemistry", "Biology", "Urdu"],
