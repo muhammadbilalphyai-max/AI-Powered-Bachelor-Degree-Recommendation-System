@@ -1,18 +1,14 @@
 import psutil
 import os
-
-def log_memory():
-    mem_mb = psutil.Process(os.getpid()).memory_info().rss / 1024 / 1024
-    print(f"[MEMORY CHECK] Current usage: {mem_mb:.1f} MB")
-
-log_memory()
-
-
-
-import os
 import streamlit as st
+
+mem_mb = psutil.Process(os.getpid()).memory_info().rss / 1024 / 1024
+st.sidebar.markdown(f"🧠 **Memory: {mem_mb:.0f} MB** / ~2700 MB limit")
+
 import pandas as pd
 import joblib
+# ==================================================================
+#  Session State Initialization
 
 # ==================================================================
 #  Session State Initialization
